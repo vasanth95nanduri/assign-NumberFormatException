@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<div class="container">
+    <h1>Student details</h1>
+    <p>Search: <input type="text" placeholder="Student id" class="input-text"/> <button type="button" class="btn btn-primary">Search <i class="fa fa-search"></i></button> </p>
+    <table class="table table-hover table-dark table-striped" th:if="${not #lists.isEmpty(students)}">
+        <thead>
+        <tr>
+            <th scope="col">StudentId</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Email</th>
+            <th scope="col">Mobile</th>
+            <th scope="col">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${students}">
+            <td scope="row" th:text="${student.id}">1</td>
+            <td th:text="${student.studentName.firstName}">Sai</td>
+            <td th:text="${student.studentName.lastName}">Nanduri</td>
+            <td th:text="${student.email}">sai@gmail.com</td>
+            <td th:text="${student.mobilel}">3095696954</td>
+            <td><a href="#" class="btn btn-warning" th:href="@{'/createStudent/new/' + ${student.id}}">Update</a><button type="button" name="button" class="btn btn-danger">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+    <button type="button" name="button" class="btn btn-primary btn-lg" onclick="window.location='/createStudent/new';">Create</button>
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
